@@ -1,0 +1,66 @@
+Dentist(SSN, FName, LName, Speacialization, Salary, DOB)
+{
+  This relation is already in the BCNF. As there is no multivalued, composite attribute and nested     tables which qualifies it for 1NF.
+  2NF – There is no partial dependency on prime attribute.
+  3NF – No Transitive functional dependency.
+  BCNF – No transitive FD.
+}
+
+Patient(PID, PName, PAddress, DOB, PhNumber)
+{
+  1NF – As we are storing only one PhNumber there is no multivalued attribute, and it qualifies for     other rules also.
+  2NF – As there is no composite key there is no partial dependency on the prime attribute.
+  3NF – No transitive FD
+  BCNF – No transitive FD
+}
+
+Insurer(Name, Address) - It is in BCNF
+
+PaymentPlan(PlanID, Status, StartDateOfPlan, LastDateOfPlan, TotalRemainingAmt, DueDay, AfterEveryMonth, (PID, BillID))
+{
+  1NF – Its in first NF
+  2NF – As key is not composite its in the 2NF
+  3NF – No transitive functional dependency exists
+  BCNF – No transitive FD
+}
+
+Payment(ReceiptID, Date, PaidAmount, Time)
+{
+  1NF – Yes
+  2NF – Yes, No composite key means no partial dependency
+  3NF – No transitive FD so its in the 3NF
+  BCNF – Yes
+}
+
+Money(ReceiptID, PaymentMode) - Its in the BCNF
+
+Insurance(ReceiptID, PolicyNumber, InsurerName)
+{
+  1NF – Yes, no composite, multivalued and nested element present in the relation
+  2NF – Yes, no partial dependency because by knowing the policy number we cannot guess the insurer     name
+  3NF – no transitive FD
+  BCNF – Yes
+}
+
+Dentist_Patient_Appointment(SSN, PID, (Date, Time)) - Its already in BCNF
+Patient_Bill(PID, BillID, TotalAmount)
+{
+  1NF – yes
+  2NF – no partial dependency
+  3NF – Yes because non-prime attribute could not determine a prime attribute
+  BCNF – yes
+}
+
+Bill_Full_Payment( (PID, BillID), ReceiptID) - It is already in BCNF
+
+PaymentPlan_Payment_Installment(ReceiptID, InstallmentNumber, PlanID) - It is already in BCNF because there is no functional dependency in which a non-prime attribute could determine a prime attribute
+
+Patient_have_Insurer(PID, InsurerName, InsuranceContract) - It is already in BCNF because there is no functional dependency in which a non-prime attribute could determine a prime attribute
+
+CurrentPatient_Refers_NewPatient(CurrentPatient_PID, NewPatient_PID)
+{
+  1NF – no multivalued, composite attribute and nested tables
+  2NF – No composite key or no partial dependency
+  3NF – No transitive functional dependency
+  It is already in BCNF
+}
